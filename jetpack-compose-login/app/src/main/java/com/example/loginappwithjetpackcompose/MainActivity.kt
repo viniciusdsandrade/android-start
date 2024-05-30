@@ -1,17 +1,39 @@
 package com.example.loginappwithjetpackcompose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Block
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.RemoveRedEye
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -30,7 +52,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AuthScreen()
+                    AuthScreen(onEnterClick = {
+                        Log.i("MainActivity", "User: $it")
+                    })
                 }
             }
         }
@@ -39,8 +63,14 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthScreen() {
+fun AuthScreen(
+    onEnterClick: (User) -> Unit
+) {
     val textFieldWidth = 280.dp // Defina a largura desejada aqui
+    val usernameIconSize = 23.dp
+    val passwordIconSize = 22.dp
+    val removeRedEyeIconSize = 22.dp // Tamanho para o ícone RemoveRedEye
+    val blockIconSize = 18.dp // Tamanho para o ícone Block
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -64,7 +94,8 @@ fun AuthScreen() {
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Person,
-                        contentDescription = "Ícone de Usuário"
+                        contentDescription = "Ícone de Usuário",
+                        modifier = Modifier.size(usernameIconSize)
                     )
                 },
                 modifier = Modifier
@@ -89,14 +120,20 @@ fun AuthScreen() {
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Lock,
-                        contentDescription = "Ícone de Senha"
+                        contentDescription = "Ícone de Senha",
+                        modifier = Modifier.size(passwordIconSize)
                     )
                 },
                 trailingIcon = {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
                         Icon(
-                            imageVector = if (passwordVisible) Icons.Filled.Clear else Icons.Filled.Refresh,
-                            contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                            imageVector = if (passwordVisible) Icons.Filled.Block else Icons.Filled.RemoveRedEye,
+                            contentDescription = if (passwordVisible) "Hide password" else "Show password",
+                            modifier = if (passwordVisible) {
+                                Modifier.requiredSize(blockIconSize)
+                            } else {
+                                Modifier.requiredSize(removeRedEyeIconSize)
+                            }
                         )
                     }
                 },
@@ -110,7 +147,15 @@ fun AuthScreen() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Button(onClick = { /* TODO: Implementar lógica de login */ }) {
+        Button(
+            onClick = {
+                onEnterClick(
+                    User(
+                        username,
+                        password
+                    )
+                )
+            }) {
             Text(text = "Entrar")
         }
     }
@@ -124,7 +169,7 @@ fun AuthScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            AuthScreen()
+            AuthScreen(onEnterClick = {})
         }
     }
 }
