@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "201310150319",
+    "project_id": "loginappwithjetpackcomposo",
+    "storage_bucket": "loginappwithjetpackcomposo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201310150319:android:05ee19797b97950315be5a",
+        "android_client_info": {
+          "package_name": "com.example.loginappwithjetpackcompose"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn4cyWavmTkYM6693s7RtGlJ6bULpKark"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
