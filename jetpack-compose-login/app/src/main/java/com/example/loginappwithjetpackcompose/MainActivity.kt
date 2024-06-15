@@ -152,7 +152,7 @@ fun AuthScreen(
             onClick = {
                 onEnterClick(
                     User(
-                        id = 1,
+                        "1",
                         username,
                         password,
                         "",

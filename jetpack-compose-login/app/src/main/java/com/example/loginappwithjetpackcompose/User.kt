@@ -12,7 +12,7 @@ import java.util.Date
  * @property tipoAutenticacao Tipo de autenticação utilizado pelo usuário (obrigatório).
  */
 data class User(
-    val id: Long,
+    val id: String,
     val email: String?,
     val senha: String,
     val telefone: String?,
