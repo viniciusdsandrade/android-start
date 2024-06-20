@@ -8,4 +8,6 @@ fun SignUpScreen(
     onSignUpClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+
 }

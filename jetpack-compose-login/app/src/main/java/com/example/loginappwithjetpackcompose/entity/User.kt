@@ -1,4 +1,4 @@
-package com.example.loginappwithjetpackcompose
+package com.example.loginappwithjetpackcompose.entity
 
 import java.util.Date
 
@@ -125,5 +125,5 @@ data class Pet(
  * Tip's de autenticação suportados pelo sistema.
  */
 enum class TipoAutenticacao {
-    EMAIL, TELEFONE, GOOGLE
+    EMAIL, GOOGLE, INSTAGRAM, GITHUB, TELEFONE
 }
