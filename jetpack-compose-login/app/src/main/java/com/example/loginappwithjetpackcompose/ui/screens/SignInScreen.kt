@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Block
 import androidx.compose.material.icons.filled.CheckCircle
@@ -52,6 +54,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -104,7 +107,10 @@ fun AuthScreen(
                 fontStyle = FontStyle.Italic
             ),
             modifier = Modifier
-                .padding(bottom = 16.dp)
+                .absolutePadding(
+                    top = 20.dp,
+                    bottom = 20.dp,
+                )
                 .align(Alignment.CenterHorizontally)
         )
 
@@ -181,10 +187,11 @@ fun AuthScreen(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(
-                    onClick = { checkRememberButton = !checkRememberButton },
+                Box(
                     modifier = Modifier
-                        .clip(CircleShape)
+                        .padding(10.dp, 12.dp, 10.dp, 10.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .clickable { checkRememberButton = !checkRememberButton }
                 ) {
                     Icon(
                         imageVector = if (checkRememberButton) Icons.Filled.CheckCircle else Icons.Filled.CheckCircleOutline,
@@ -192,26 +199,42 @@ fun AuthScreen(
                         tint = if (checkRememberButton) MaterialTheme.colorScheme.primary else Color.LightGray
                     )
                 }
-                Spacer(modifier = Modifier.width(2.dp))
-                Text("Lembrar-me")
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(
+                    modifier = Modifier
+                        .padding(0.dp, 12.dp, 12.dp, 12.dp),
+                    text = "Lembrar-me",
+                    style = TextStyle(
+                        fontSize = 15.sp,
+                        fontStyle = FontStyle.Normal,
+                        fontFamily = FontFamily.Default,
+                        fontWeight = FontWeight.Normal,
+                        letterSpacing = 0.15.sp,
+                        textAlign = TextAlign.Start
+                    ),
+                    color = Color.Gray
+                )
             }
             Card(
                 onClick = { /* Sua ação aqui */ },
-                modifier = Modifier.align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+                colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+                modifier = Modifier.wrapContentSize()
             ) {
                 Text(
                     text = "Esqueceu a senha?",
-                    modifier = Modifier.padding(8.dp),
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        fontStyle = FontStyle.Normal,
-                        fontFamily = FontFamily.Default
+                    modifier = Modifier.absolutePadding(
+                        right = 12.dp,
                     ),
-                    color = MaterialTheme.colorScheme.primary
+                    style = TextStyle(
+                        fontSize = 15.sp,
+                        fontStyle = FontStyle.Normal,
+                        fontFamily = FontFamily.Default,
+                        fontWeight = FontWeight.Normal,
+                        letterSpacing = 0.15.sp,
+                    ),
+                    color = Color.Gray
                 )
             }
-
         }
         Spacer(Modifier.height(4.dp))
         Button(
