@@ -2,6 +2,7 @@ package com.example.loginappwithjetpackcompose.ui.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -67,7 +68,7 @@ fun AuthScreen(
     onLoginClick: () -> Unit,
     onSignUpClick: () -> Unit
 ) {
-    val relativePosition = 200.dp
+    val relativePosition = 120.dp
     val textFieldWidth = 280.dp
     val usernameIconSize = 23.dp
     val passwordIconSize = 22.dp
@@ -86,33 +87,40 @@ fun AuthScreen(
         var checkRememberButton by remember { mutableStateOf(false) }
         val context = LocalContext.current
 
-        Image(
-            painter = painterResource(id = R.drawable.logo_discerno_pet_escuro),
-            contentDescription = "Logo Discerno Pet",
+        Column(
             modifier = Modifier
-                .absolutePadding(top = 60.dp)
-                .size(180.dp)
-                .align(Alignment.CenterHorizontally)
-                .clip(CircleShape)
                 .weight(1f)
-                .fillMaxWidth()
-        )
+                .padding(46.dp)
+                .clip(RoundedCornerShape(20.dp))
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.logo_discerno_pet_escuro),
+                contentDescription = "Logo Discerno Pet",
+                modifier = Modifier
+                    .absolutePadding(top = 60.dp)
+                    .size(180.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .clip(CircleShape)
+                    .weight(1f)
+                    .fillMaxWidth()
+            )
 
-        Text(
-            text = "DISCERNOPET",
-            style = MaterialTheme.typography.headlineMedium.copy(
-                fontSize = 40.sp,
-                fontWeight = FontWeight.W700,
-                fontFamily = FontFamily.Default,
-                fontStyle = FontStyle.Italic
-            ),
-            modifier = Modifier
-                .absolutePadding(
-                    top = 20.dp,
-                    bottom = 20.dp,
-                )
-                .align(Alignment.CenterHorizontally)
-        )
+            Text(
+                text = "DISCERNOPET",
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    fontSize = 40.sp,
+                    fontWeight = FontWeight.W700,
+                    fontFamily = FontFamily.Default,
+                    fontStyle = FontStyle.Italic
+                ),
+                modifier = Modifier
+                    .absolutePadding(
+                        top = 20.dp,
+                        bottom = 20.dp,
+                    )
+                    .align(Alignment.CenterHorizontally)
+            )
+        }
 
         Row(
             modifier = Modifier
