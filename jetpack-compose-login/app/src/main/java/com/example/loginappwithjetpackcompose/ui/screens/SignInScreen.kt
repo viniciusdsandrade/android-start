@@ -283,8 +283,8 @@ fun AuthScreen(
                 ),
             shape = RoundedCornerShape(22.dp),
             colors = ButtonDefaults.buttonColors(
-                disabledContainerColor = Color.Gray, // Cor do botão desabilitado
-                disabledContentColor = Color.White, // Cor do texto do botão desabilitado
+                disabledContainerColor = Color.Gray,
+                disabledContentColor = Color.White,
                 contentColor = Color.White
             )
         ) {
@@ -304,20 +304,46 @@ fun AuthScreen(
 
         Spacer(Modifier.height(relativePosition))
 
-        AlternativeLoginOptions(
-            onIconClick = { index ->
-                when (index) {
-                    0 -> Toast.makeText(context, "Google Login Click", Toast.LENGTH_SHORT).show()
-                    1 -> Toast.makeText(context, "Instagram Login Click", Toast.LENGTH_SHORT).show()
-                    2 -> Toast.makeText(context, "Github Login Click", Toast.LENGTH_SHORT).show()
-                }
-            },
-            onSignUpClick = onSignUpClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentSize(align = Alignment.BottomCenter)
-        )
+//        AlternativeLoginOptions(
+//            onIconClick = { index ->
+//                when (index) {
+//                    0 -> Toast.makeText(context, "Google Login Click", Toast.LENGTH_SHORT).show()
+//                    1 -> Toast.makeText(context, "Instagram Login Click", Toast.LENGTH_SHORT).show()
+//                    2 -> Toast.makeText(context, "Github Login Click", Toast.LENGTH_SHORT).show()
+//                }
+//            },
+//            onSignUpClick = onSignUpClick,
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .wrapContentSize(align = Alignment.BottomCenter)
+//        )
+
+        LegalNotice(modifier = Modifier.fillMaxWidth())
+
+        Spacer(modifier = Modifier.height(20.dp))
     }
+}
+
+@Composable
+fun LegalNotice(modifier: Modifier = Modifier) {
+    Text(
+        text = "Ao iniciar sessão, o Usuário concorda com os nossos " +
+                "Termos de Serviço, Política de Privacidade e Política de Conteúdos.",
+        style = TextStyle(
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Normal,
+            fontStyle = FontStyle.Normal,
+            fontFamily = FontFamily.Default,
+            color = Color.Gray,
+            letterSpacing = 0.15.sp,
+            textAlign = TextAlign.Center,
+            background = Color.Transparent
+        ),
+        modifier = modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        textAlign = TextAlign.Center
+    )
 }
 
 @Composable
