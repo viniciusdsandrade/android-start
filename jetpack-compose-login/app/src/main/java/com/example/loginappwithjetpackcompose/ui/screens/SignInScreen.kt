@@ -71,7 +71,9 @@ import com.example.loginappwithjetpackcompose.ui.theme.LoginAppWithJetpackCompos
 @Composable
 fun AuthScreen(
     onLoginClick: () -> Unit,
-    onSignUpClick: () -> Unit
+    onSignUpClick: () -> Unit,
+    onGoogleClick: () -> Unit,
+    onForgotPasswordClick: () -> Unit
 ) {
     val relativePosition = 20.dp
     val usernameIconSize = 23.dp
@@ -92,7 +94,6 @@ fun AuthScreen(
         val (password, setPassword) = rememberSaveable { mutableStateOf("") }
         var passwordVisible by remember { mutableStateOf(false) }
         var checkRememberButton by remember { mutableStateOf(false) }
-        val context = LocalContext.current
 
         Column(
             modifier = Modifier
@@ -104,7 +105,7 @@ fun AuthScreen(
                 painter = painterResource(id = R.drawable.logo_discerno_pet_escuro),
                 contentDescription = "Logo Discerno Pet",
                 modifier = Modifier
-                    .absolutePadding(top = 60.dp)
+                    .absolutePadding(top = 30.dp)
                     .size(180.dp)
                     .align(Alignment.CenterHorizontally)
                     .clip(CircleShape)
@@ -251,7 +252,7 @@ fun AuthScreen(
                 )
             }
             Card(
-                onClick = { /* Sua ação aqui */ },
+                onClick = onForgotPasswordClick,
                 colors = CardDefaults.cardColors(containerColor = Color.Transparent),
                 modifier = Modifier.wrapContentSize()
             ) {
@@ -311,7 +312,7 @@ fun AuthScreen(
         ) {
             // Botão "Criar Conta"
             Button(
-                onClick = onLoginClick,
+                onClick = onSignUpClick,
                 modifier = Modifier
                     .fillMaxWidth(larguraBotaoEntrar)
                     .clip(RoundedCornerShape(0.dp)) // Arredondamento dos cantos
@@ -344,7 +345,7 @@ fun AuthScreen(
 
             // Botão "Login com Google"
             Button(
-                onClick = onLoginClick,
+                onClick = onGoogleClick,
                 modifier = Modifier
                     .fillMaxWidth(larguraBotaoEntrar)
                     .clip(RoundedCornerShape(0.dp))
@@ -486,7 +487,7 @@ fun AuthScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            AuthScreen({}, {})
+            AuthScreen({}, {}, {}, {})
         }
     }
 }

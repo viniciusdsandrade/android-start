@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.loginappwithjetpackcompose.ui.screens.AuthScreen
+import com.example.loginappwithjetpackcompose.ui.screens.SignUpScreen
 import com.example.loginappwithjetpackcompose.ui.theme.LoginAppWithJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,10 +23,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AuthScreen(
-                        onLoginClick = { Log.i("MainActivity", "SignIn") },
-                        onSignUpClick = { Log.i("MainActivity", "SignUp") }
-                    )
+
+                    SignUpScreen(
+                        onSignUpClick = { Log.i("MainActivity", "SignUp") },
+                        onLoginClick = { Log.i("MainActivity", "Login") })
+
+//                    AuthScreen(
+//                        onLoginClick = { Log.i("MainActivity", "Login") },
+//                        onSignUpClick = { Log.i("MainActivity", "SignUp") },
+//                        onGoogleClick = { Log.i("MainActivity", "Google") },
+//                        onForgotPasswordClick = { Log.i("MainActivity", "Forgot Password") }
+//                    )
                 }
             }
         }
