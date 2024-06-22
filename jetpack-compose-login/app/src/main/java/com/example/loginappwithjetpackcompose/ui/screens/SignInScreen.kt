@@ -36,7 +36,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -345,28 +344,28 @@ fun AuthScreen(
 
             // Botão "Login com Google"
             Button(
-                onClick = onSignUpClick, // Chama o lambda do login com Google
+                onClick = onLoginClick,
                 modifier = Modifier
                     .fillMaxWidth(larguraBotaoEntrar)
-                    .clip(RoundedCornerShape(0.dp)) // Arredondamento dos cantos
+                    .clip(RoundedCornerShape(0.dp))
                     .fillMaxWidth(1f)
                     .height(45.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
                     contentColor = Color.Black
                 ),
-                border = BorderStroke(1.dp, Color.LightGray) // Adiciona uma borda
+                border = BorderStroke(1.dp, Color.LightGray)
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.icon_google), // Coloque aqui o ícone do Google
+                    Image(
+                        painter = painterResource(id = R.drawable.logo_google_1), // Certifique-se que o ID esteja correto
                         contentDescription = "Login com Google",
                         modifier = Modifier.size(30.dp)
                     )
-                    Spacer(Modifier.width(18.dp))
+                    Spacer(Modifier.width(24.dp))
                     Text(
                         text = "Entrar com Google",
                         style = TextStyle(
