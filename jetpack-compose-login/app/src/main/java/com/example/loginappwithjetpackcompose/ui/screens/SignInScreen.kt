@@ -2,7 +2,7 @@ package com.example.loginappwithjetpackcompose.ui.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,8 +28,10 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +39,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -63,24 +66,27 @@ import com.example.loginappwithjetpackcompose.R
 import com.example.loginappwithjetpackcompose.ui.theme.LoginAppWithJetpackComposeTheme
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AuthScreen(
     onLoginClick: () -> Unit,
     onSignUpClick: () -> Unit
 ) {
     val relativePosition = 120.dp
-    val textFieldWidth = 280.dp
     val usernameIconSize = 23.dp
     val passwordIconSize = 22.dp
     val removeRedEyeIconSize = 24.dp
     val blockIconSize = 18.dp
+    val borderRadiusInputField = 14.dp
+    val larguraInputField = 0.96f
+    val alturaInputField = 56.dp
+    val larguraBotaoEntrar = 0.96f
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         val (username, setUsername) = rememberSaveable { mutableStateOf("") }
         val (password, setPassword) = rememberSaveable { mutableStateOf("") }
         var passwordVisible by remember { mutableStateOf(false) }
@@ -124,7 +130,7 @@ fun AuthScreen(
 
         Row(
             modifier = Modifier
-                .fillMaxWidth(0.98f)
+                .fillMaxWidth(larguraInputField)
                 .padding(4.dp)
         ) {
             TextField(
@@ -139,9 +145,19 @@ fun AuthScreen(
                     )
                 },
                 modifier = Modifier
-                    .width(textFieldWidth) // Largura fixa
-                    .height(56.dp) // Altura fixa
-                    .weight(1f) // Ocupa o espaço disponível no Row
+                    .height(alturaInputField)
+                    .weight(1f)
+                    .border(
+                        width = 1.dp,
+                        color = Color.LightGray,
+                        shape = RoundedCornerShape(borderRadiusInputField),
+                    ),
+                shape = RoundedCornerShape(borderRadiusInputField),
+                colors = TextFieldDefaults.textFieldColors(
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    cursorColor = Color.Black
+                )
             )
         }
 
@@ -149,7 +165,7 @@ fun AuthScreen(
 
         Row(
             modifier = Modifier
-                .fillMaxWidth(0.98f)
+                .fillMaxWidth(larguraInputField)
                 .padding(4.dp)
         ) {
             TextField(
@@ -179,9 +195,19 @@ fun AuthScreen(
                 },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 modifier = Modifier
-                    .width(textFieldWidth)
-                    .height(56.dp)
+                    .height(alturaInputField)
                     .weight(1f)
+                    .border(
+                        width = 1.dp, // Espessura da borda (opcional)
+                        color = Color.LightGray, // Cor da borda (opcional)
+                        shape = RoundedCornerShape(borderRadiusInputField), // Arredondamento dos cantos
+                    ),
+                shape = RoundedCornerShape(borderRadiusInputField), // Arredondamento do fundo do TextField
+                colors = TextFieldDefaults.textFieldColors(
+                    focusedIndicatorColor = Color.Transparent, // Cor da borda quando o TextField está focado
+                    unfocusedIndicatorColor = Color.Transparent, // Cor da borda quando o TextField não está focado
+                    cursorColor = Color.Black // Cor do cursor
+                )
             )
         }
 
@@ -247,7 +273,20 @@ fun AuthScreen(
         Spacer(Modifier.height(4.dp))
         Button(
             onClick = onLoginClick,
-            modifier = Modifier.fillMaxWidth(0.98f)
+            modifier = Modifier
+                .fillMaxWidth(larguraBotaoEntrar)
+                .clip(RoundedCornerShape(0.dp)) // Arredondamento dos cantos
+                .border(
+                    width = 1.dp, // Espessura da borda
+                    color = Color.White, // Cor da borda
+                    shape = RoundedCornerShape(22.dp) // Arredondamento da borda (opcional)
+                ),
+            shape = RoundedCornerShape(22.dp),
+            colors = ButtonDefaults.buttonColors(
+                disabledContainerColor = Color.Gray, // Cor do botão desabilitado
+                disabledContentColor = Color.White, // Cor do texto do botão desabilitado
+                contentColor = Color.White
+            )
         ) {
             Text(
                 text = "Entrar",
@@ -261,6 +300,7 @@ fun AuthScreen(
                 )
             )
         }
+
 
         Spacer(Modifier.height(relativePosition))
 
