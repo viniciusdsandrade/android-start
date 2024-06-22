@@ -1,6 +1,7 @@
 package com.example.loginappwithjetpackcompose.ui.screens
 
-import android.widget.Toast
+
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -35,6 +36,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -72,7 +74,7 @@ fun AuthScreen(
     onLoginClick: () -> Unit,
     onSignUpClick: () -> Unit
 ) {
-    val relativePosition = 120.dp
+    val relativePosition = 20.dp
     val usernameIconSize = 23.dp
     val passwordIconSize = 22.dp
     val removeRedEyeIconSize = 24.dp
@@ -296,11 +298,91 @@ fun AuthScreen(
                     fontStyle = FontStyle.Normal,
                     fontFamily = FontFamily.Default,
                     color = Color.White,
-                    letterSpacing = 1.sp
+                    letterSpacing = 0.15.sp
                 )
             )
         }
 
+        Spacer(Modifier.height(8.dp))
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentSize(align = Alignment.BottomCenter)
+        ) {
+            // Botão "Criar Conta"
+            Button(
+                onClick = onLoginClick,
+                modifier = Modifier
+                    .fillMaxWidth(larguraBotaoEntrar)
+                    .clip(RoundedCornerShape(0.dp)) // Arredondamento dos cantos
+                    .border(
+                        width = 1.dp, // Espessura da borda
+                        color = Color.White, // Cor da borda
+                        shape = RoundedCornerShape(22.dp) // Arredondamento da borda (opcional)
+                    ),
+                shape = RoundedCornerShape(22.dp),
+                colors = ButtonDefaults.buttonColors(
+                    disabledContainerColor = Color.Gray,
+                    disabledContentColor = Color.White,
+                    contentColor = Color.White
+                )
+            ) {
+                Text(
+                    text = "Criar Conta",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.W500,
+                        fontStyle = FontStyle.Normal,
+                        fontFamily = FontFamily.Default,
+                        color = Color.White,
+                        letterSpacing = 0.15.sp
+                    )
+                )
+            }
+
+            Spacer(Modifier.height(36.dp))
+
+            // Botão "Login com Google"
+            Button(
+                onClick = onSignUpClick, // Chama o lambda do login com Google
+                modifier = Modifier
+                    .fillMaxWidth(larguraBotaoEntrar)
+                    .clip(RoundedCornerShape(0.dp)) // Arredondamento dos cantos
+                    .fillMaxWidth(1f)
+                    .height(45.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White,
+                    contentColor = Color.Black
+                ),
+                border = BorderStroke(1.dp, Color.LightGray) // Adiciona uma borda
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.icon_google), // Coloque aqui o ícone do Google
+                        contentDescription = "Login com Google",
+                        modifier = Modifier.size(30.dp)
+                    )
+                    Spacer(Modifier.width(18.dp))
+                    Text(
+                        text = "Entrar com Google",
+                        style = TextStyle(
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.W500,
+                            fontStyle = FontStyle.Normal,
+                            fontFamily = FontFamily.Default,
+                            color = Color.Black,
+                            letterSpacing = 0.15.sp
+                        )
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp)) // Adiciona espaçamento
 
         Spacer(Modifier.height(relativePosition))
 
@@ -323,6 +405,7 @@ fun AuthScreen(
         Spacer(modifier = Modifier.height(20.dp))
     }
 }
+
 
 @Composable
 fun LegalNotice(modifier: Modifier = Modifier) {
