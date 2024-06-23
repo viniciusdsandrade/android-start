@@ -63,7 +63,6 @@ fun SignUpScreen(
                 .weight(1f)
                 .fillMaxWidth()
         )
-
         Text(
             text = "DISCERNOPET",
             style = MaterialTheme.typography.headlineMedium.copy(
@@ -76,7 +75,6 @@ fun SignUpScreen(
                 .padding(vertical = 20.dp)
                 .align(Alignment.CenterHorizontally)
         )
-
         SignUpInputField(
             value = name,
             onValueChange = setName,
@@ -84,9 +82,7 @@ fun SignUpScreen(
             icon = Icons.Default.Person,
             iconDescription = "Nome"
         )
-
         Spacer(modifier = Modifier.height(distanceBetweenFields))
-
         SignUpInputField(
             value = phone,
             onValueChange = setPhone,
@@ -94,9 +90,7 @@ fun SignUpScreen(
             icon = Icons.Default.Phone,
             iconDescription = "Telefone"
         )
-
         Spacer(modifier = Modifier.height(distanceBetweenFields))
-
         SignUpInputField(
             value = email,
             onValueChange = setEmail,
@@ -104,9 +98,7 @@ fun SignUpScreen(
             icon = Icons.Default.Email,
             iconDescription = "Email"
         )
-
         Spacer(modifier = Modifier.height(distanceBetweenFields))
-
         PasswordInputField(
             value = password,
             onValueChange = setPassword,
@@ -114,9 +106,7 @@ fun SignUpScreen(
             passwordVisible = passwordVisible,
             onPasswordToggleClick = { passwordVisible = !passwordVisible }
         )
-
         Spacer(modifier = Modifier.height(distanceBetweenFields))
-
         PasswordInputField(
             value = confirmPassword,
             onValueChange = setConfirmPassword,
@@ -124,9 +114,7 @@ fun SignUpScreen(
             passwordVisible = confirmPasswordVisible,
             onPasswordToggleClick = { confirmPasswordVisible = !confirmPasswordVisible }
         )
-
         Spacer(modifier = Modifier.height(24.dp))
-
         Button(
             onClick = onSignUpClick,
             modifier = Modifier
@@ -156,15 +144,11 @@ fun SignUpScreen(
                 )
             )
         }
-
         Spacer(modifier = Modifier.height(4.dp))
-
         TextButton(onClick = onLoginClick) {
             Text("Já tem Cadastro? Login")
         }
-
         LegalNotice(modifier = Modifier.fillMaxWidth())
-
         Spacer(modifier = Modifier.height(20.dp))
     }
 }
