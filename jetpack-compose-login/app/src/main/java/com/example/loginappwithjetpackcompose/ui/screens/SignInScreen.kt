@@ -51,7 +51,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -64,7 +63,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.loginappwithjetpackcompose.R
@@ -83,7 +81,7 @@ fun AuthScreen(
     val passwordIconSize = 22.dp
     val removeRedEyeIconSize = 24.dp
     val blockIconSize = 18.dp
-    val borderRadiusInputField = 14.dp
+    val borderRadiusInputField = 14.dp  
     val larguraInputField = 0.96f
     val alturaInputField = 56.dp
     val larguraBotaoEntrar = 0.96f
@@ -115,7 +113,6 @@ fun AuthScreen(
                     .weight(1f)
                     .fillMaxWidth()
             )
-
             Text(
                 text = "DISCERNOPET",
                 style = MaterialTheme.typography.headlineMedium.copy(
@@ -132,7 +129,6 @@ fun AuthScreen(
                     .align(Alignment.CenterHorizontally)
             )
         }
-
         Row(
             modifier = Modifier
                 .fillMaxWidth(larguraInputField)
@@ -165,9 +161,7 @@ fun AuthScreen(
                 )
             )
         }
-
         Spacer(modifier = Modifier.height(16.dp))
-
         Row(
             modifier = Modifier
                 .fillMaxWidth(larguraInputField)
@@ -215,9 +209,7 @@ fun AuthScreen(
                 )
             )
         }
-
         Spacer(modifier = Modifier.height(2.dp))
-
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -305,9 +297,7 @@ fun AuthScreen(
                 )
             )
         }
-
         Spacer(Modifier.height(8.dp))
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -343,10 +333,7 @@ fun AuthScreen(
                     )
                 )
             }
-
             Spacer(Modifier.height(36.dp))
-
-            // Botão "Login com Google"
             Button(
                 onClick = onGoogleClick,
                 modifier = Modifier
@@ -384,11 +371,8 @@ fun AuthScreen(
                 }
             }
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
+        Spacer(Modifier.height(16.dp))
         Spacer(Modifier.height(relativePosition))
-
 //        AlternativeLoginOptions(
 //            onIconClick = { index ->
 //                when (index) {
@@ -402,9 +386,7 @@ fun AuthScreen(
 //                .fillMaxWidth()
 //                .wrapContentSize(align = Alignment.BottomCenter)
 //        )
-
         LegalNotice(modifier = Modifier.fillMaxWidth())
-
         Spacer(modifier = Modifier.height(20.dp))
     }
 }
@@ -425,7 +407,7 @@ fun LegalNotice(modifier: Modifier) {
             append(" ")
             pushStringAnnotation(
                 tag = "URL",
-                annotation = "https://www.example.com/terms"
+                annotation = "https://www.linkedin.com/in/viniciusdsandrade/"
             )
             withStyle(
                 style = SpanStyle(
@@ -448,7 +430,7 @@ fun LegalNotice(modifier: Modifier) {
             append(" ")
             pushStringAnnotation(
                 tag = "URL",
-                annotation = "https://www.example.com/privacy"
+                annotation = "https://github.com/viniciusdsandrade"
             )
             withStyle(
                 style = SpanStyle(

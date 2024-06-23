@@ -8,8 +8,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.loginappwithjetpackcompose.ui.screens.AuthScreen
+import com.example.loginappwithjetpackcompose.ui.screens.MainScreen
 import com.example.loginappwithjetpackcompose.ui.screens.SignUpScreen
 import com.example.loginappwithjetpackcompose.ui.theme.LoginAppWithJetpackComposeTheme
 
@@ -23,19 +28,39 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-//                    SignUpScreen(
-//                        onSignUpClick = { Log.i("MainActivity", "SignUp") },
-//                        onLoginClick = { Log.i("MainActivity", "Login") })
-
-                    AuthScreen(
-                        onLoginClick = { Log.i("MainActivity", "Login") },
-                        onSignUpClick = { Log.i("MainActivity", "SignUp") },
-                        onGoogleClick = { Log.i("MainActivity", "Google") },
-                        onForgotPasswordClick = { Log.i("MainActivity", "Forgot Password") }
-                    )
+                    AppNavigator()
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun AppNavigator() {
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "auth") {
+        composable("auth") {
+            AuthScreen(
+                onLoginClick = { navController.navigate("main") },
+                onSignUpClick = { navController.navigate("signup") },
+                onGoogleClick = { /* Handle Google login */ },
+                onForgotPasswordClick = { /* Handle forgot password */ }
+            )
+        }
+        composable("signup") {
+            SignUpScreen(
+                onSignUpClick = { navController.navigate("main") },
+                onLoginClick = { navController.popBackStack() }
+            )
+        }
+        composable("main") {
+            MainScreen(
+                onLogoutClick = {
+                    navController.navigate("auth") {
+                        popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                    }
+                }
+            )
         }
     }
 }
