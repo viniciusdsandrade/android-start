@@ -51,21 +51,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.loginappwithjetpackcompose.R
 import com.example.loginappwithjetpackcompose.ui.theme.LoginAppWithJetpackComposeTheme
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -200,15 +203,15 @@ fun AuthScreen(
                     .height(alturaInputField)
                     .weight(1f)
                     .border(
-                        width = 1.dp, // Espessura da borda (opcional)
-                        color = Color.LightGray, // Cor da borda (opcional)
-                        shape = RoundedCornerShape(borderRadiusInputField), // Arredondamento dos cantos
+                        width = 1.dp,
+                        color = Color.LightGray,
+                        shape = RoundedCornerShape(borderRadiusInputField),
                     ),
-                shape = RoundedCornerShape(borderRadiusInputField), // Arredondamento do fundo do TextField
+                shape = RoundedCornerShape(borderRadiusInputField),
                 colors = TextFieldDefaults.textFieldColors(
-                    focusedIndicatorColor = Color.Transparent, // Cor da borda quando o TextField está focado
-                    unfocusedIndicatorColor = Color.Transparent, // Cor da borda quando o TextField não está focado
-                    cursorColor = Color.Black // Cor do cursor
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    cursorColor = Color.Black
                 )
             )
         }
@@ -382,7 +385,7 @@ fun AuthScreen(
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp)) // Adiciona espaçamento
+        Spacer(modifier = Modifier.height(16.dp))
 
         Spacer(Modifier.height(relativePosition))
 
@@ -408,23 +411,57 @@ fun AuthScreen(
 
 
 @Composable
-fun LegalNotice(modifier: Modifier = Modifier) {
+fun LegalNotice(modifier: Modifier) {
     Text(
-        text = "Ao iniciar sessão, o Usuário concorda com os nossos " +
-                "Termos de Serviço, Política de Privacidade e Política de Conteúdos.",
-        style = TextStyle(
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Normal,
-            fontStyle = FontStyle.Normal,
-            fontFamily = FontFamily.Default,
-            color = Color.Gray,
-            letterSpacing = 0.15.sp,
-            textAlign = TextAlign.Center,
-            background = Color.Transparent
-        ),
-        modifier = modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
+        text = buildAnnotatedString {
+            withStyle(
+                style = SpanStyle(
+                    color = Color.Gray,
+                    fontSize = 10.sp
+                )
+            ) {
+                append("Ao iniciar sessão, o Usuário concorda com os nossos ")
+            }
+            append(" ")
+            pushStringAnnotation(
+                tag = "URL",
+                annotation = "https://www.example.com/terms"
+            )
+            withStyle(
+                style = SpanStyle(
+                    color = Color.Blue,
+                    fontSize = 10.sp
+                )
+            ) {
+                append("Termos de Serviço")
+            }
+            pop()
+            append(" ")
+            withStyle(
+                style = SpanStyle(
+                    color = Color.Gray,
+                    fontSize = 10.sp
+                )
+            ) {
+                append("e")
+            }
+            append(" ")
+            pushStringAnnotation(
+                tag = "URL",
+                annotation = "https://www.example.com/privacy"
+            )
+            withStyle(
+                style = SpanStyle(
+                    color = Color.Blue,
+                    fontSize = 10.sp
+                )
+            ) {
+                append("Política de Privacidade")
+            }
+            pop()
+            append(".")
+        },
+        modifier = modifier.padding(16.dp),
         textAlign = TextAlign.Center
     )
 }
@@ -475,7 +512,6 @@ fun AlternativeLoginOptions(
                 Text("Cadastrar")
             }
         }
-
     }
 }
 

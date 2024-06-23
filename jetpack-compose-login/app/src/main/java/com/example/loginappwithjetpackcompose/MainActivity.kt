@@ -24,16 +24,16 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    SignUpScreen(
-                        onSignUpClick = { Log.i("MainActivity", "SignUp") },
-                        onLoginClick = { Log.i("MainActivity", "Login") })
-
-//                    AuthScreen(
-//                        onLoginClick = { Log.i("MainActivity", "Login") },
+//                    SignUpScreen(
 //                        onSignUpClick = { Log.i("MainActivity", "SignUp") },
-//                        onGoogleClick = { Log.i("MainActivity", "Google") },
-//                        onForgotPasswordClick = { Log.i("MainActivity", "Forgot Password") }
-//                    )
+//                        onLoginClick = { Log.i("MainActivity", "Login") })
+
+                    AuthScreen(
+                        onLoginClick = { Log.i("MainActivity", "Login") },
+                        onSignUpClick = { Log.i("MainActivity", "SignUp") },
+                        onGoogleClick = { Log.i("MainActivity", "Google") },
+                        onForgotPasswordClick = { Log.i("MainActivity", "Forgot Password") }
+                    )
                 }
             }
         }
