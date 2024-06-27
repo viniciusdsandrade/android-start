@@ -1,7 +1,6 @@
 package com.example.loginappwithjetpackcompose
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -49,8 +48,11 @@ fun AppNavigator() {
         }
         composable("signup") {
             SignUpScreen(
-                onSignUpClick = { navController.navigate("main") },
-                onLoginClick = { navController.popBackStack() }
+                onSignUpClick = {
+                    // Navigate to the login screen after successful signup
+                    navController.popBackStack("auth", inclusive = false)
+                },
+                onLoginClick = { navController.popBackStack() } // Go back if they already have an account
             )
         }
         composable("main") {
@@ -64,4 +66,3 @@ fun AppNavigator() {
         }
     }
 }
-
